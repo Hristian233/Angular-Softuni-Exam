@@ -9,7 +9,9 @@ import {
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTableModule,
+  MatDialogModule
 } from "@angular/material";
 
 import { AppComponent } from "./app.component";
@@ -20,6 +22,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from "./auth/auth-interceptor";
+import { UserListComponent } from "./users/user-list/user-list.component";
+import { UserDeleteComponent } from "./users/user-delete/user-delete.component";
+import { UsersService } from "./users/users.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +33,9 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
     HeaderComponent,
     PostListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    UserListComponent,
+    UserDeleteComponent    
   ],
   imports: [
     BrowserModule,
@@ -42,9 +49,12 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
     MatToolbarModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    MatTableModule,
+    MatDialogModule,
     HttpClientModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}],
-  bootstrap: [AppComponent]
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true},UsersService],
+  bootstrap: [AppComponent],
+  entryComponents:[UserDeleteComponent]
 })
 export class AppModule {}
