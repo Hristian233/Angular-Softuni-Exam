@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs';
@@ -44,20 +44,21 @@ export class AuthService {
                     this.isAuthenticated = true;
                 }
                 this.authStatusListener.next(true);
-                this.loggedInUser = response.user
-                console.log(this.loggedInUser);
+                sessionStorage.setItem('currentUser', JSON.stringify(response.user))
             });
         this.router.navigate(['/']);
     }
 
     getCurrentUser(){
-        return this.loggedInUser;
+        return sessionStorage.getItem('currentUser');
     }
+
 
     logout(){
         this.token = null;
         this.isAuthenticated = false;
         this.authStatusListener.next(false);
+        sessionStorage.clear();
     }
 
     getAllUsers(){

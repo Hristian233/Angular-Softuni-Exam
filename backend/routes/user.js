@@ -77,7 +77,6 @@ router.delete('/:id', (req,res,next)=>{
                 message: 'Deletion unsuccessfull'
             })
         })
-    // console.log(req.params._id);
 })
 
 module.exports = router;

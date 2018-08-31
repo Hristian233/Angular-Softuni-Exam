@@ -14,8 +14,9 @@ export class AccessGuardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       let roles = route.data["roles"] as Array<string>;
-      let currentUser = this.authService.getCurrentUser();
-      console.log(currentUser);
-    return false;
+      let user = JSON.parse(this.authService.getCurrentUser());
+      return user && user.roles.some(r=> roles.includes(r));
+
+
   }
 }
