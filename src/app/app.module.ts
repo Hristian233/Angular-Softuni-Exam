@@ -11,7 +11,8 @@ import {
   MatExpansionModule,
   MatProgressSpinnerModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatPaginatorModule
 } from "@angular/material";
 
 import { AppComponent } from "./app.component";
@@ -25,6 +26,7 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
 import { UserListComponent } from "./users/user-list/user-list.component";
 import { UserDeleteComponent } from "./users/user-delete/user-delete.component";
 import { UsersService } from "./users/users.service";
+import { NotFoundComponent } from './auth/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { UsersService } from "./users/users.service";
     LoginComponent,
     SignupComponent,
     UserListComponent,
-    UserDeleteComponent    
+    UserDeleteComponent,
+    NotFoundComponent    
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { UsersService } from "./users/users.service";
     MatProgressSpinnerModule,
     MatTableModule,
     MatDialogModule,
+    MatPaginatorModule,
     HttpClientModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true},UsersService],
