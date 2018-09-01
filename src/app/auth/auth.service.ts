@@ -11,7 +11,6 @@ export class AuthService {
     private token:string;
     private authStatusListener = new Subject<boolean>();
     private loggedInUser;
-
     constructor (private http: HttpClient,private router:Router){}
 
     getToken(){
