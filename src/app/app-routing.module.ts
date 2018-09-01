@@ -7,6 +7,7 @@ import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { UserListComponent } from "./users/user-list/user-list.component";
 import { AccessGuardGuard } from "./guards/access-guard.guard";
+import { NotFoundComponent } from "./auth/not-found/not-found.component";
 
 const routes: Routes = [
   { path: '', component: PostListComponent },
@@ -14,8 +15,8 @@ const routes: Routes = [
   { path: 'edit/:postId', component: PostCreateComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'users', component: UserListComponent, canActivate: [AccessGuardGuard], data: {roles:['ROLE_ADMIN']} }
-  // TODO: Not found component
+  { path: 'users', component: UserListComponent, canActivate: [AccessGuardGuard], data: {roles:['ROLE_ADMIN']} },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
